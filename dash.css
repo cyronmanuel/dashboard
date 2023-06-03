@@ -1,0 +1,581 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background: whitesmoke;
+  display: grid;
+  grid-template-areas: "side hed hed" "side list list" "side con con";
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 80px 160px 1fr;
+  width: 100vw;
+  height: 100vh;
+  font-family: Open Sans, sans-serif;
+  font-weight: 900;
+}
+@media only screen and (max-width: 950px) {
+  html html, html body, body html, body body {
+    background-color: rgb(239, 232, 232);
+    grid-template-areas: " hed hed" " list list" " con con" " side side";
+    grid-template-rows: 80px 160px 1fr clamp(0px, 50%, 70px);
+  }
+  html html .header, html body .header, body html .header, body body .header {
+    box-shadow: 0px 0px 5px rgb(33, 33, 33);
+  }
+  html html .list-rate .card:active, html body .list-rate .card:active, body html .list-rate .card:active, body body .list-rate .card:active {
+    background-image: none;
+    background-color: #040e74;
+    margin-top: 15px;
+    box-shadow: 1px 1px 5px white;
+    border: 1px solid white;
+  }
+  html html .list-rate .card:active img, html body .list-rate .card:active img, body html .list-rate .card:active img, body body .list-rate .card:active img {
+    background-color: white;
+  }
+  html html .list-rate .card:active h4, html body .list-rate .card:active h4, body html .list-rate .card:active h4, body body .list-rate .card:active h4 {
+    color: #ffffff;
+  }
+  html html .list-rate .card:active h1, html body .list-rate .card:active h1, body html .list-rate .card:active h1, body body .list-rate .card:active h1 {
+    color: #ffffff;
+  }
+  html html .list-rate .card:active p, html body .list-rate .card:active p, body html .list-rate .card:active p, body body .list-rate .card:active p {
+    color: #ffffff;
+  }
+  html html .list-rate .card:active span, html body .list-rate .card:active span, body html .list-rate .card:active span, body body .list-rate .card:active span {
+    color: rgb(17, 230, 17);
+  }
+  html html .list-rate .card:hover, html body .list-rate .card:hover, body html .list-rate .card:hover, body body .list-rate .card:hover {
+    box-shadow: 1px 1px 5px rgb(12, 13, 15);
+    cursor: pointer;
+    height: 120px;
+    display: grid;
+    transition: 0.5s;
+    grid-template-areas: "h4 icon" "h1 icon" "p icon";
+    border-radius: 20px;
+    text-decoration: none;
+    background-size: cover;
+    grid-template-columns: clamp(102px, 20%, 1fr) clamp(0fr, 10%, 1fr);
+    grid-template-rows: 30px 50px 50px;
+  }
+  html html .list-rate .card:hover h4, html body .list-rate .card:hover h4, body html .list-rate .card:hover h4, body body .list-rate .card:hover h4 {
+    padding-left: 2.5vw;
+    font-size: clamp(5px, 4vw, 20px);
+    grid-area: h4;
+    transition: 0.5s;
+    text-decoration: none;
+  }
+  html html .list-rate .card:hover h1, html body .list-rate .card:hover h1, body html .list-rate .card:hover h1, body body .list-rate .card:hover h1 {
+    font-size: clamp(10px, 5vw, 32px);
+    padding-left: 3vw;
+    transition: 0.2s;
+    grid-area: h1;
+    text-decoration: none;
+  }
+  html html .list-rate .card:hover p, html body .list-rate .card:hover p, body html .list-rate .card:hover p, body body .list-rate .card:hover p {
+    font-size: calc(12px + 6 * (12vw - 168px) / 200);
+    padding-left: clamp(10px, 2vw, 20px);
+    grid-area: p;
+    font-weight: 500;
+    transition: 0.5s;
+    text-decoration: none;
+  }
+  html html .list-rate .card:hover p span, html body .list-rate .card:hover p span, body html .list-rate .card:hover p span, body body .list-rate .card:hover p span {
+    font-weight: 900;
+    text-shadow: 1px 0px 1px black;
+    text-decoration: none;
+  }
+  html html .list-rate .card:hover img, html body .list-rate .card:hover img, body html .list-rate .card:hover img, body body .list-rate .card:hover img {
+    background: red;
+    grid-area: icon;
+    transition: 0.5s;
+    margin-right: 20px;
+    width: clamp(30px, 50%, 55px);
+    /*  display: flex; */
+    background: rgb(142, 205, 250);
+    border-radius: 100%;
+    box-shadow: 1px 1px 2px rgb(0, 0, 0);
+    padding: 5px;
+    place-self: center;
+    justify-self: center;
+  }
+  html html .sidebar, html body .sidebar, body html .sidebar, body body .sidebar {
+    padding: 30px;
+    background-image: url(table.svg);
+    z-index: 2;
+    background-size: cover;
+    box-shadow: 1px 1px 10px rgb(0, 0, 0);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    grid-area: side;
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    -moz-column-gap: 10px;
+         column-gap: 10px;
+    margin-top: 10px;
+  }
+  html html .sidebar a:active, html body .sidebar a:active, body html .sidebar a:active, body body .sidebar a:active {
+    color: #ffffff;
+    background: blue;
+    border: 1px solid black;
+    margin-bottom: 20px;
+    transition: 0.5s;
+    padding-top: 5px;
+  }
+  html html .sidebar a:active img, html body .sidebar a:active img, body html .sidebar a:active img, body body .sidebar a:active img {
+    border-radius: 5px;
+  }
+  html html .sidebar a, html body .sidebar a, body html .sidebar a, body body .sidebar a {
+    transition: 0.5s;
+    font-weight: 900;
+    color: blue;
+    margin: 2px;
+    padding: 2px;
+    -moz-column-gap: 10px;
+         column-gap: 10px;
+    border-radius: 10px;
+    display: grid;
+    text-decoration: none;
+    place-content: center;
+    place-items: center;
+    background: rgba(255, 255, 255, 0.778);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  html html .sidebar a img, html body .sidebar a img, body html .sidebar a img, body body .sidebar a img {
+    width: clamp(0px, 50%, 30px);
+  }
+  html html .content, html body .content, body html .content, body body .content {
+    grid-template-areas: "table " " chart";
+  }
+}
+@media only screen and (max-width: 450px) {
+  html html, html body, body html, body body {
+    background-color: rgb(208, 204, 204);
+    grid-template-areas: " hed hed" " list list" " con con" " side side";
+    grid-template-rows: 80px 160px 1fr clamp(0px, 50%, 70px);
+  }
+  html html table, html body table, body html table, body body table {
+    font-size: calc(15px + 6 * (12vw - 168px) / 200);
+  }
+  html html .sidebar, html body .sidebar, body html .sidebar, body body .sidebar {
+    padding: 0px;
+    background-image: url(table.svg);
+    background-size: cover;
+    box-shadow: 1px 1px 10px rgb(0, 0, 0);
+    padding: 30px;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    grid-area: side;
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    -moz-column-gap: 10px;
+         column-gap: 10px;
+    margin-top: 10px;
+  }
+  html html .sidebar a, html body .sidebar a, body html .sidebar a, body body .sidebar a {
+    font-weight: 900;
+    color: rgb(255, 255, 255);
+    margin: 2px;
+    padding: 2px;
+    text-shadow: 0px 0px 2px black;
+    -moz-column-gap: 10px;
+         column-gap: 10px;
+    border-radius: 10px;
+    display: grid;
+    text-decoration: none;
+    place-content: center;
+    place-items: center;
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  html html .sidebar a img, html body .sidebar a img, body html .sidebar a img, body body .sidebar a img {
+    width: clamp(0px, 50%, 30px);
+  }
+  html html .list-rate .card:active, html body .list-rate .card:active, body html .list-rate .card:active, body body .list-rate .card:active {
+    background-image: none;
+    background-color: #040e74;
+    margin-top: 15px;
+    box-shadow: 1px 1px 5px white;
+    border: 1px solid white;
+  }
+  html html .list-rate .card:active img, html body .list-rate .card:active img, body html .list-rate .card:active img, body body .list-rate .card:active img {
+    background-color: white;
+  }
+  html html .list-rate .card:active h4, html body .list-rate .card:active h4, body html .list-rate .card:active h4, body body .list-rate .card:active h4 {
+    color: #ffffff;
+  }
+  html html .list-rate .card:active h1, html body .list-rate .card:active h1, body html .list-rate .card:active h1, body body .list-rate .card:active h1 {
+    color: #ffffff;
+  }
+  html html .list-rate .card:active p, html body .list-rate .card:active p, body html .list-rate .card:active p, body body .list-rate .card:active p {
+    color: #ffffff;
+  }
+  html html .list-rate .card:active span, html body .list-rate .card:active span, body html .list-rate .card:active span, body body .list-rate .card:active span {
+    color: rgb(17, 230, 17);
+  }
+  html html .list-rate .card:hover, html body .list-rate .card:hover, body html .list-rate .card:hover, body body .list-rate .card:hover {
+    cursor: pointer;
+    height: 120px;
+    display: grid;
+    grid-template-areas: "h4 icon" "h1 icon" "p icon";
+    border-radius: 20px;
+    text-decoration: none;
+    background-size: cover;
+    grid-template-columns: clamp(102px, 20%, 1fr) clamp(0fr, 10%, 1fr);
+    grid-template-rows: 30px 50px 50px;
+  }
+  html html .list-rate .card:hover h4, html body .list-rate .card:hover h4, body html .list-rate .card:hover h4, body body .list-rate .card:hover h4 {
+    padding-left: 2.5vw;
+    font-size: clamp(5px, 4vw, 20px);
+    grid-area: h4;
+    transition: 0.5s;
+    text-decoration: none;
+  }
+  html html .list-rate .card:hover h1, html body .list-rate .card:hover h1, body html .list-rate .card:hover h1, body body .list-rate .card:hover h1 {
+    font-size: clamp(10px, 5vw, 32px);
+    padding-left: 3vw;
+    transition: 0.2s;
+    grid-area: h1;
+    text-decoration: none;
+  }
+  html html .list-rate .card:hover p, html body .list-rate .card:hover p, body html .list-rate .card:hover p, body body .list-rate .card:hover p {
+    font-size: calc(12px + 6 * (12vw - 168px) / 200);
+    padding-left: clamp(10px, 2vw, 20px);
+    grid-area: p;
+    font-weight: 500;
+    transition: 0.5s;
+    text-decoration: none;
+  }
+  html html .list-rate .card:hover p span, html body .list-rate .card:hover p span, body html .list-rate .card:hover p span, body body .list-rate .card:hover p span {
+    font-weight: 900;
+    text-shadow: 1px 0px 1px black;
+    text-decoration: none;
+  }
+  html html .list-rate .card:hover img, html body .list-rate .card:hover img, body html .list-rate .card:hover img, body body .list-rate .card:hover img {
+    grid-area: icon;
+    transition: 0.5s;
+    margin-right: 20px;
+    width: clamp(30px, 50%, 55px);
+    /*  display: flex; */
+    border-radius: 100%;
+    box-shadow: 1px 1px 2px rgb(0, 0, 0);
+    padding: 5px;
+    place-self: center;
+    justify-self: center;
+  }
+  html html .content, html body .content, body html .content, body body .content {
+    grid-template-areas: "table " " chart";
+  }
+}
+html .sidebar, body .sidebar {
+  background: rgb(229, 227, 227);
+  grid-area: side;
+  display: grid;
+  grid-template-rows: repeat(auto-fill, 50px);
+  padding-top: clamp(0px, 100%, 100px);
+  border-radius: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  gap: 2px;
+}
+html .sidebar a:active, body .sidebar a:active {
+  color: whitesmoke;
+  background: blue;
+}
+html .sidebar a:hover, body .sidebar a:hover {
+  transition: 0.5s;
+}
+html .sidebar a, body .sidebar a {
+  transition: 0.5s;
+  color: #aaa8a8;
+  border-radius: 5px;
+  background: rgb(255, 255, 255);
+  display: flex;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  place-items: center;
+  padding-left: 20px;
+  text-decoration: none;
+  /*    height: clamp(0vh, 100%,5vh); */
+}
+html .sidebar a img, body .sidebar a img {
+  display: grid;
+  width: 30px;
+}
+html .header, body .header {
+  background-image: url(header.svg);
+  background-size: contain;
+  grid-area: hed;
+  font-size: 30px;
+  display: flex;
+  justify-content: start;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  place-items: start;
+  color: rgba(10, 82, 227, 0.853);
+  border-radius: 10px;
+  margin: 10px;
+}
+html .header span, body .header span {
+  color: rgba(83, 84, 85, 0.6588235294);
+  font-size: 13px;
+}
+html .list-rate, body .list-rate {
+  height: clamp(0vh, 90%, 100vh);
+  border-radius: 10px;
+  margin: 10px;
+  display: grid;
+  background-image: url(kk.svg);
+  background-size: cover;
+  grid-area: list;
+  justify-content: center;
+  place-content: center;
+  justify-content: space-around;
+  grid-template-columns: repeat(auto-fit, clamp(90px, 30%, 420px));
+}
+html .list-rate .card:hover, body .list-rate .card:hover {
+  background-image: url(cardhover.svg);
+  background-size: cover;
+  transition: 1s;
+  box-shadow: 1px 1px 5px rgb(12, 13, 15);
+}
+html .list-rate .card:hover p, body .list-rate .card:hover p {
+  font-size: 13.5px;
+  transition: 0.5s;
+  font-weight: 400;
+  color: rgba(10, 82, 227, 0.853);
+}
+html .list-rate .card:hover img, body .list-rate .card:hover img {
+  width: 65px;
+  transition: 0.5s;
+  opacity: 0.8;
+}
+html .list-rate .card:hover h4, body .list-rate .card:hover h4 {
+  font-size: 21px;
+  transition: 0.2s;
+  text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.276);
+}
+html .list-rate .card:hover h1, body .list-rate .card:hover h1 {
+  font-size: 35px;
+  transition: 0.2s;
+  color: blue;
+}
+html .list-rate a, body .list-rate a {
+  text-decoration: none;
+}
+html .list-rate a .card, body .list-rate a .card {
+  box-shadow: 1px 1px 5px rgb(12, 13, 15);
+  cursor: pointer;
+  height: 120px;
+  display: grid;
+  transition: 2s;
+  grid-template-areas: "h4 icon" "h1 icon" "p icon";
+  border-radius: 20px;
+  text-decoration: none;
+  background-image: url(card.svg);
+  background-size: cover;
+  grid-template-columns: clamp(102px, 20%, 1fr) clamp(0fr, 10%, 1fr);
+  grid-template-rows: 30px 50px 50px;
+}
+html .list-rate a .card h4, body .list-rate a .card h4 {
+  padding-left: 2.5vw;
+  font-size: clamp(5px, 4vw, 20px);
+  grid-area: h4;
+  transition: 0.5s;
+  color: rgba(24, 96, 240, 0.992);
+  text-decoration: none;
+}
+html .list-rate a .card h1, body .list-rate a .card h1 {
+  font-size: clamp(10px, 5vw, 32px);
+  padding-left: 3vw;
+  transition: 0.2s;
+  grid-area: h1;
+  color: #67748E;
+  text-decoration: none;
+}
+html .list-rate a .card p, body .list-rate a .card p {
+  font-size: calc(12px + 6 * (12vw - 168px) / 200);
+  color: rgba(2, 85, 252, 0.988);
+  padding-left: clamp(10px, 2vw, 20px);
+  grid-area: p;
+  font-weight: 500;
+  transition: 0.5s;
+  text-decoration: none;
+}
+html .list-rate a .card p span, body .list-rate a .card p span {
+  color: rgb(109, 237, 109);
+  font-weight: 900;
+  text-shadow: 1px 0px 1px black;
+  text-decoration: none;
+}
+html .list-rate a .card img, body .list-rate a .card img {
+  background: red;
+  grid-area: icon;
+  transition: 0.5s;
+  margin-right: 20px;
+  width: clamp(30px, 50%, 55px);
+  /*  display: flex; */
+  background: rgb(142, 205, 250);
+  border-radius: 100%;
+  box-shadow: 1px 1px 2px rgb(0, 0, 0);
+  padding: 5px;
+  place-self: center;
+  justify-self: center;
+}
+html .content, body .content {
+  grid-area: con;
+  display: grid;
+  grid-template-areas: "table chart";
+}
+html .content .table::-webkit-scrollbar, body .content .table::-webkit-scrollbar {
+  display: none;
+}
+html .content .table, body .content .table {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  background-image: url(cardhover.svg);
+  background-repeat: no-repeat;
+  grid-area: table;
+  display: grid;
+  overflow-y: auto;
+  grid-template-areas: "h2 h2" "table table";
+  grid-template-rows: 50px 1fr;
+}
+html .content .table .table-container::-webkit-scrollbar, body .content .table .table-container::-webkit-scrollbar {
+  display: none;
+}
+html .content .table .table-container, body .content .table .table-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  box-shadow: 0px 10px 10px rgba(88, 86, 86, 0.72);
+  overflow-y: scroll;
+  grid-area: table;
+  background: #ffffff;
+  height: 420px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 20px;
+}
+html .content .table .table-container table::-webkit-scrollbar, body .content .table .table-container table::-webkit-scrollbar {
+  display: none;
+}
+html .content .table .table-container table, body .content .table .table-container table {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background: #b13b3b;
+  opacity: 1;
+  background: transparent;
+  border: 1px solid black;
+  width: clamp(0vw, 100%, 100vw);
+  border-collapse: collapse;
+  grid-area: table;
+  border: 0px;
+}
+html .content .table .table-container table tr:nth-child(even), body .content .table .table-container table tr:nth-child(even) {
+  background-color: rgba(215, 239, 250, 0.5921568627);
+}
+html .content .table .table-container table tr th, body .content .table .table-container table tr th {
+  padding: 10px;
+  background: #6BA8F8;
+  position: sticky;
+  top: 0;
+  color: #ffffff;
+}
+html .content .table .table-container table tr td, body .content .table .table-container table tr td {
+  background: transparent;
+  padding: 20px;
+  text-align: center;
+  color: #242e3b;
+  cursor: pointer;
+}
+html .content .table .table-container table tr:hover, body .content .table .table-container table tr:hover {
+  background: rgba(81, 79, 79, 0.1882352941);
+  cursor: pointer;
+  transition: 0.5s;
+}
+html .content .table h2, body .content .table h2 {
+  grid-area: h2;
+  margin: 10px;
+  color: #056cf1;
+}
+html .content .chart, body .content .chart {
+  background-image: url(cardhover.svg);
+  background-repeat: no-repeat;
+  border-radius: 10px;
+  margin: 10px;
+  grid-area: chart;
+  display: grid;
+  padding-right: 4px;
+  grid-template-areas: "headtext" "sale";
+  grid-template-rows: 60px 1fr;
+}
+html .content .chart h2, body .content .chart h2 {
+  grid-area: headtext;
+  padding-left: 10px;
+  place-self: start;
+  color: #056cf1;
+}
+html .content .chart .container-sale::-webkit-scrollbar, body .content .chart .container-sale::-webkit-scrollbar {
+  display: none;
+}
+html .content .chart .container-sale, body .content .chart .container-sale {
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.883);
+  grid-area: sale;
+  margin: 5;
+  overflow-x: auto;
+  padding: 5px;
+  overflow-y: auto;
+  height: 400px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+html .content .chart .container-sale table, body .content .chart .container-sale table {
+  width: 100%;
+  background: #fffdfd;
+  border-radius: 10px;
+  border-collapse: collapse;
+  overflow-y: auto;
+}
+html .content .chart .container-sale table tr:nth-child(even), body .content .chart .container-sale table tr:nth-child(even) {
+  background-color: rgba(215, 239, 250, 0.5921568627);
+}
+html .content .chart .container-sale table tr:hover, body .content .chart .container-sale table tr:hover {
+  background-color: rgba(190, 193, 194, 0.6431372549);
+  transition: 0.5s;
+}
+html .content .chart .container-sale table td, body .content .chart .container-sale table td {
+  color: rgb(136, 136, 138);
+  font-size: 10px;
+}
+html .content .chart .container-sale table td img, body .content .chart .container-sale table td img {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-self: center;
+  place-self: center;
+  border-radius: 100%;
+  aspect-ratio: 2/3;
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
+}
+html .content .chart .container-sale table td span, body .content .chart .container-sale table td span {
+  font-size: 12px;
+  color: rgb(82, 153, 246);
+  width: auto;
+}/*# sourceMappingURL=dash.css.map */
